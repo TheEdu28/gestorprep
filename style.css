@@ -4,70 +4,69 @@
   height: 50px;
 }
 
-.container-4{
-	overflow: hidden;
-	width: 300px;
+/* Search 3 - zoom in looking glass */
+.container-3{
+  width: 300px;
   vertical-align: middle;
   white-space: nowrap;
-  /* position: relative; */
+  position: relative;
 }
-.container-4 input#search{
+.container-3 input#search{
   width: 300px;
   height: 50px;
   background: #2b303b;
   border: none;
   font-size: 10pt;
   float: left;
-	color: #fff;
-  padding-left: 15px;
+	color: #262626;
+  padding-left: 45px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  color: #fff;
   
-  -webkit-transition: all .55s ease;
-  -moz-transition: all .55s ease;
-  -ms-transition: all .55s ease;
-  -o-transition: all .55s ease;
-  transition: all .55s ease;
 }
 
-.container-4 input#search::-webkit-input-placeholder {
+.container-3 input#search::-webkit-input-placeholder {
    color: #65737e;
 }
-.container-4 input#search:-moz-placeholder { /* Firefox 18- */
+.container-3 input#search:-moz-placeholder { /* Firefox 18- */
    color: #65737e;  
 }
-.container-4 input#search::-moz-placeholder {  /* Firefox 19+ */
+.container-3 input#search::-moz-placeholder {  /* Firefox 19+ */
    color: #65737e;  
 }
-.container-4 input#search:-ms-input-placeholder {  
+.container-3 input#search:-ms-input-placeholder {  
    color: #65737e;  
 }
 
-.container-4 button.icon{
-	-webkit-border-top-right-radius: 5px;
-  -webkit-border-bottom-right-radius: 5px;
-  -moz-border-radius-topright: 5px;
-  -moz-border-radius-bottomright: 5px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border: none;
-  background: #232833;
-  height: 50px;
-  width: 50px;
+.container-3 .icon{
+  position: absolute;
+  top: 50%;
+  margin-left: 17px;
+  margin-top: 17px;
+  z-index: 1;
   color: #4f5b66;
-  opacity: 0;
-  font-size: 10pt;
-  -webkit-transition: all .55s ease;
+  
+    -webkit-transition: all .55s ease;
   -moz-transition: all .55s ease;
   -ms-transition: all .55s ease;
   -o-transition: all .55s ease;
   transition: all .55s ease;
+  
 }
 
-  /* ANIMATION EFFECT */
-  .container-4:hover button.icon, .container-4:active button.icon, .container-4:focus button.icon{
-    outline:none;
-    opacity: 1;
-    margin-left: -50px;
+  /* ANIMATION EFFECTS */
+	.container-3 input#search:focus, .container-3 input#search:active{
+    outline:none; 
+	}
+  .container-3:hover .icon{
+  	margin-top: 16px;
+    color: #93a2ad;
+    
+    -webkit-transform:scale(1.5); /* Safari and Chrome */
+    -moz-transform:scale(1.5); /* Firefox */
+    -ms-transform:scale(1.5); /* IE 9 */
+    -o-transform:scale(1.5); /* Opera */
+     transform:scale(1.5);
   }
