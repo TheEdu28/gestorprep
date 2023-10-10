@@ -4,42 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestor de Presupuesto</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!--Gestor de Presupuesto-->
+   
     <h1>Gestor de Presupuesto</h1>
-    <div class="contenido">
-        <div class="contenido-principal contenido">
-            <h2>Agrega tus gastos o ingresos</h2>
-            <div class="agregar-gastos">
-                <form action="">
-                    <div class="campo">
-                        <label for="descripcion">Descripción:</label>
-                        <input type="text" placeholder="Ej. Comida" id="descripcion">
-                    </div>
-                    <div class="campo">
-                        <label for="cantidad">Cantidad:</label>
-                        <input type="number" placeholder="Ej. 300" id="cantidad">
-                    </div>
-                    <input type="submit" value="Agregar" class="boton boton-primario">
-                </form>
-            </div>
-        </div>
-        <div class="contenido-principal contenido">
-            <h2>Listado</h2>
-            <div class="listado-gastos">
-                <div class="gastos">
-                    <div class="gasto">
-                        <p>Comida <span class="gasto">$300</span></p>
-                    </div>
-                    <div class="gasto">
-                        <p>Comida <span class="gasto">$300</span></p>
-                    </div>
-                    <div class="gasto">
-                        <p>Comida <span class="gasto">$300</span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!--filtro buscador-->
+    <form action="index.php" method="post">
+            <input type="text" name="buscador" placeholder="Buscar">
+            <input type="submit" value="Buscar">
+        </form>
+        <?php
+        //conexion a la base de datos
+        $conexion = mysqli_connect("localhost", "root", "", "gestor_presupuesto");
+        //consulta a la base de datos
+        $consulta = "SELECT * FROM ingresos";
+        //resultado de la consulta
+        $resultado = mysqli_query($conexion, $consulta);
+        //recorrer la tabla
+        while ($fila = mysqli_fetch_array($resultado)) {
+            echo "<table>";
+            echo "<tr>";
+            echo "<td>" . $fila['id'] . "</td>";
+            echo "<td>" . $fila['fecha'] . "</td>";
+            echo "<td>" . $fila['concepto'] . "</td>";
+            echo "<td>" . $fila['cantidad'] . "</td>";
+            echo "<td>" . $fila['categoria'] . "</td>";
+            echo "</tr>";
+            echo "</table>";
+        }
+        ?>
+   <!--Aplicación web simple para ayudar a los usuarios a gestionar su presupuesto. La aplicación debe permitir a los usuarios agregar ingresos y gastos, establecer categorías, generar informes y organizarlos.-->
+   <table>
+         <tr>
+              <td><a href="ingresos.php">Ingresos</a></td>
+              <td><a href="gastos.php">Gastos</a></td>
+              <td><a href="categorias.php">Categorias</a></td>
+              <td><a href="informes.php">Informes</a></td>
+              <td><a href="organizar.php">Organizar</a></td>
+         </tr>
+   </table>
 </body>
 </html>
