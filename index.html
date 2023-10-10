@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Presupuesto</title>
+</head>
+<body>
+    <!--Gestor de Presupuesto-->
+    <h1>Gestor de Presupuesto</h1>
+    <div class="contenido">
+        <div class="contenido-principal contenido">
+            <h2>Agrega tus gastos o ingresos</h2>
+            <div class="agregar-gastos">
+                <form action="">
+                    <div class="campo">
+                        <label for="descripcion">Descripción:</label>
+                        <input type="text" placeholder="Ej. Comida" id="descripcion">
+                    </div>
+                    <div class="campo">
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" placeholder="Ej. 300" id="cantidad">
+                    </div>
+                    <input type="submit" value="Agregar" class="boton boton-primario">
+                </form>
+            </div>
+        </div>
+        <div class="contenido-principal contenido">
+            <h2>Listado</h2>
+            <div class="listado-gastos">
+                <div class="gastos">
+                    <div class="gasto">
+                        <p>Comida <span class="gasto">$300</span></p>
+                    </div>
+                    <div class="gasto">
+                        <p>Comida <span class="gasto">$300</span></p>
+                    </div>
+                    <div class="gasto">
+                        <p>Comida <span class="gasto">$300</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
