@@ -1,43 +1,105 @@
-*{
+body{
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background-color: #E8E6BD;
 }
 
-body{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
+.titulo_principal{
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: #068393;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.container{
+.menu {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  display: inline-block;
+  margin-right: 20px;
   position: relative;
 }
 
-.input{
-  padding: 350px;
-  padding-right: 35px;
-  border-radius: 5px 0 0 5px;
-  border: 0;
-  outline: none;
-  font-size: 1rem;
+.menu a {
+  text-decoration: none;
+  color: black;
 }
 
-button{
-background-color: crimson;
-padding: 10px 15px;
-position: absolute;
-border: 0;
-top: 0;
-bottom: 0;
-right: 0;
-border-radius: 0 5px 5px 0;
-color: #fff;
-cursor: pointer;
+.menu ul ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
 }
 
-button:hover{
-  background-color: darkred;
+.menu li:hover > ul {
+  display: block;
+}
+
+.container-2{
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.container-2 input#search{
+  width: 0;
+  height: 50px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 25px;
+  background-color: rgb(53, 51, 51);
+  color: white;
+  transition: width 0.4s ease-in-out;
+  float: right; /* Add this line to move the search bar to the right */
+}
+
+.container-1{
+  position: relative;
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.container-1 input#search{
+  width: 300px;
+  height: 50px;
+  background: #2b303b;
+  border: none;
+  font-size: 10pt;
+  float: right;
+  color: #63717f;
+  padding-right: 45px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.container-1 .icon{
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  margin-left: 17px;
+  margin-top: 17px;
+  z-index: 1;
+  color: #4f5b66;
+}
+
+.container-1 input#search:hover, .container-1 input#search:focus, .container-1 input#search:active{
+  outline:none;
+  background: #ffffff;
 }

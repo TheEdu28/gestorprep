@@ -6,26 +6,35 @@
     <title>Gestor de Presupuesto</title>
     <link rel="stylesheet" href="style.css">
 
-    <script src="https://kit.fontawesome.com/b408879b64.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/f43069e110.js" crossorigin="anonymous"></script>
 </head>
 <body>
    
-    <h1>Gestor de Presupuesto</h1>
+    <h1 class="titulo_principal">Gestor de Presupuesto</h1>
 
-  <table>
-    <tr>
-         <td><a href="ingresos.php">Ingresos</a></td>
-         <td><a href="gastos.php">Gastos</a></td>
-         <td><a href="categorias.php">Categorias</a></td>
-         <td><a href="informes.php">Informes</a></td>
-         <td><a href="organizar.php">Organizar</a></td>
-    </tr>
-</table>
-
- <div class="container">
-    <input type="text" placeholder="Buscar...">
-    <button><i class="fa-solid fa-magnifying-glass"></i></button>
- </div>
+    <div class="menu">
+      <ul>
+          <li><a href="ingresos.php">Ingresos</a></li>
+          <li><a href="gastos.php">Gastos</a></li>
+          <li>
+              <a href="categorias.php">Categorias</a>
+              <ul>
+                  <li><a href="#">Subcategoría 1</a></li>
+                  <li><a href="#">Subcategoría 2</a></li>
+                  <li><a href="#">Subcategoría 3</a></li>
+              </ul>
+          </li>
+          <li><a href="informes.php">Informes</a></li>
+          <li><a href="organizar.php">Organizar</a></li>
+      </ul>
+  </div>
+  
+  <div class="box">
+    <div class="container-1">
+        <span class="icon"><i class="fa fa-search"></i></span>
+        <input type="search" id="search" placeholder="Search..." />
+    </div>
+  </div>
 
 </body>
 </html>
