@@ -4,37 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestor de Presupuesto</title>
-    <link rel="stylesheet" href="style.css">
-
-    <script src="https://kit.fontawesome.com/f43069e110.js" crossorigin="anonymous"></script>
+    <style>
+        /* Estilos CSS para mejorar la apariencia */
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
 </head>
 <body>
-   
-    <h1 class="titulo_principal">Gestor de Presupuesto</h1>
+    <h1>Gestor de Presupuesto</h1>
 
-    <div class="menu">
-      <ul>
-          <li><a href="ingresos.php">Ingresos</a></li>
-          <li><a href="gastos.php">Gastos</a></li>
-          <li>
-              <a href="categorias.php">Categorias</a>
-              <ul>
-                  <li><a href="#">Subcategoría 1</a></li>
-                  <li><a href="#">Subcategoría 2</a></li>
-                  <li><a href="#">Subcategoría 3</a></li>
-              </ul>
-          </li>
-          <li><a href="informes.php">Informes</a></li>
-          <li><a href="organizar.php">Organizar</a></li>
-      </ul>
-  </div>
-  
-  <div class="box">
-    <div class="container-1">
-        <span class="icon"><i class="fa fa-search"></i></span>
-        <input type="search" id="search" placeholder="Search..." />
+    <h2>Categorías</h2>
+    <div id="categories">
+        <input type="text" id="categoryName" placeholder="Nombre de categoría">
+        <button onclick="addCategory()">Agregar Categoría</button>
     </div>
-  </div>
+    
+    <h2>Transacciones</h2>
+    <div id="transactions">
+        <input type="text" id="description" placeholder="Descripción">
+        <input type="date" id="date">
+        <input type="number" id="amount" placeholder="Cantidad">
+        <select id="categorySelect">
+            <option value="default" selected>Seleccionar Categoría</option>
+        </select>
+        <button onclick="addTransaction()">Agregar Transacción</button>
+    </div>
+
+    <h2>Resumen</h2>
+    <div id="summary">
+        <!-- Aquí se mostrará el resumen de gastos e ingresos por categoría -->
+    </div>
+
+    <h2>Presupuesto</h2>
+    <div id="budget">
+        <!-- Aquí se establecerán los presupuestos por categoría y se mostrará la cantidad restante -->
+    </div>
+
+    <script>
+        // Variables para almacenar categorías y transacciones
+        let categories = [];
+        let transactions = [];
+
+        // Función para agregar una categoría
+        function addCategory() {
+            const categoryName = document.getElementById("categoryName").value;
+            if (categoryName) {
+                categories.push({ name: categoryName, budget: 0 });
+                updateCategoryDropdown();
+                document.getElementById("categoryName").value = "";
+            }
+        }
+
+        // Función para agregar una transacción
+        function addTransaction() {
+            const description = document.getElementById("description").value;
+            const date = document.getElementById("date").value;
+            const amount = parseFloat(document.getElementById("amount").value);
+            const category = document.getElementById("categorySelect").value;
+
+            if (description && date && amount && category !== "default") {
+                transactions.push({ description, date, amount, category });
+                updateTransactionSummary();
+                updateBudget();
+                document.getElementById("description").value = "";
+                document.getElementById("date").value = "";
+                document.getElementById("amount").value = "";
+                document.getElementById("categorySelect").value = "default";
+            }
+        }
+
+        // Función para actualizar el resumen de transacciones
+        function updateTransactionSummary() {
+            const summaryElement = document.getElementById("summary");
+            summaryElement.innerHTML = "";
+
+            categories.forEach(category => {
+                const categoryTransactions = transactions.filter(transaction => transaction.category === category.name);
+                const totalIncome = categoryTransactions.reduce((total, transaction) => transaction.amount > 0 ? total + transaction.amount : total, 0);
+                const totalExpense = categoryTransactions.reduce((total, transaction) => transaction.amount < 0 ? total - transaction.amount : total, 0);
+
+                const categorySummary = document.createElement("div");
+                categorySummary.innerHTML = `<b>${category.name}</b>: Ingresos - ${totalIncome}, Gastos - ${totalExpense}`;
+                summaryElement.appendChild(categorySummary);
+            });
+        }
+
+        // Función para actualizar el presupuesto
+        function updateBudget() {
+            const budgetElement = document.getElementById("budget");
+            budgetElement.innerHTML = "";
+
+            categories.forEach(category => {
+                const categoryTransactions = transactions.filter(transaction => transaction.category === category.name);
+                const totalExpense = categoryTransactions.reduce((total, transaction) => transaction.amount < 0 ? total - transaction.amount : total, 0);
+
+                const remainingBudget = category.budget - totalExpense;
+
+                const budgetSummary = document.createElement("div");
+                budgetSummary.innerHTML = `<b>${category.name}</b>: Presupuesto - ${category.budget}, Restante - ${remainingBudget}`;
+                budgetElement.appendChild(budgetSummary);
+
+                // Verificar si el límite de presupuesto se ha alcanzado
+                if (remainingBudget <= 0) {
+                    alert(`¡El límite de presupuesto para la categoría ${category.name} se ha alcanzado!`);
+                }
+            });
+        }
+
+        // Función para actualizar el menú desplegable de categorías
+        function updateCategoryDropdown() {
+            const categorySelect = document.getElementById("categorySelect");
+            categorySelect.innerHTML = '<option value="default" selected>Seleccionar Categoría</option>';
+
+            categories.forEach(category => {
+                const option = document.createElement("option");
+                option.value = category.name;
+                option.innerText = category.name;
+                categorySelect.appendChild(option);
+            });
+        }
+    </script>
+    
 
 </body>
 </html>
