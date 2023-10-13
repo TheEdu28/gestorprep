@@ -112,6 +112,30 @@
             });
         }
 
+        // Función para establecer el presupuesto de una categoría
+           function setCategoryBudget() {
+             const categoryName = prompt("Ingrese el nombre de la categoría:");
+             const budget = parseFloat(prompt("Ingrese el presupuesto para la categoría:"));
+
+         if (isNaN(budget)) {
+             alert("El presupuesto debe ser un número válido.");
+                return;
+    }
+
+         const category = categories.find(cat => cat.name === categoryName);
+
+             if (category) {
+                category.budget = budget;
+                  updateBudget();
+    } else {
+        alert("La categoría especificada no existe.");
+    }
+}
+
+// Llama a la función setCategoryBudget desde tu interfaz de usuario, por ejemplo, en un botón.
+// <button onclick="setCategoryBudget()">Establecer Presupuesto</button>
+
+
         // Función para actualizar el menú desplegable de categorías
         function updateCategoryDropdown() {
             const categorySelect = document.getElementById("categorySelect");
